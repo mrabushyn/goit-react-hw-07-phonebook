@@ -6,7 +6,7 @@ import css from './Phonebook.module.css';
 
 
 export default function ContactList() {
-  const contacts = useSelector(state => state.contacts.contacts);
+  const contacts = useSelector(state => state.contacts.contacts.items);
   const filter = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
 

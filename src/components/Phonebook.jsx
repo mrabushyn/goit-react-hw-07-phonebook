@@ -9,7 +9,7 @@ import ContactForm from './ContactForm';
 export default function Phonebook() {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(state => state.contacts.contacts);
+  const contacts = useSelector(state => state.contacts.contacts.items);
 
   const formSubmitHandler = ({ name, number }) => {
     const normalizedSameName = name.toLowerCase();
