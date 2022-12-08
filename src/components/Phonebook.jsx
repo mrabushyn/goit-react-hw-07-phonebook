@@ -1,7 +1,8 @@
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+// import { addContact } from '../redux/contactsSlice';
 
-import { addContact } from '../redux/contactsSlice';
+import { fetchContacts, addContact } from 'redux/contactOperations';
+
 
 import Filter from './Filter';
 import ContactList from './ContactList';
