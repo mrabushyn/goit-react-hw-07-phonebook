@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { nanoid } from 'nanoid';
 import {
   fetchContacts,
   addContact,
   deleteContact,
-  // filteredList,
 } from './contactOperations';
 
 const handlePending = state => {
@@ -15,7 +13,6 @@ const handleRejected = (state, action) => {
   state.contacts.isLoading = false;
   state.contacts.error = action.payload;
 };
-
 
 const contactsInitialState = {
   contacts: {
