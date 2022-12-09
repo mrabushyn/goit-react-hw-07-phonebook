@@ -1,27 +1,22 @@
 // import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeContact } from '../redux/contactsSlice';
 import css from './Phonebook.module.css';
 
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contactOperations';
+import { fetchContacts, deleteContact } from 'redux/contactOperations';
 import { getContacts, getFilter } from 'redux/selectors';
 
 export default function ContactList() {
-  const { items, isLoading, error } = useSelector(getContacts);
-  // const items = useSelector(state => state.contacts.contacts.items);
-  // const isLoading = useSelector(state => state.contacts.contacts.isLoading);
-  // const error = useSelector(state => state.contacts.contacts.error);
-
-
-  const filter = useSelector(state => state.contacts.filter);
   const dispatch = useDispatch();
+
+  const { items, isLoading, error } = useSelector(getContacts);
+  const filter = useSelector(getFilter);
+
   const normalizedFilter = filter.toLowerCase();
   const filteredContacts = items.filter(contact =>
     contact.name.toLowerCase().includes(normalizedFilter)
   );
   
-
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
@@ -36,7 +31,7 @@ export default function ContactList() {
             <button
               type="onClick"
               onClick={() => {
-                dispatch(removeContact(contact.id));
+                dispatch(deleteContact(contact.id));
               }}
               className={css.delBtnStyle}
             >

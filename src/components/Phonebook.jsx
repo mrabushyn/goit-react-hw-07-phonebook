@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-// import { addContact } from '../redux/contactsSlice';
-
-import { fetchContacts, addContact } from 'redux/contactOperations';
+import { addContact } from '../redux/contactOperations';
+import { fetchContacts } from 'redux/contactOperations';
 
 import Filter from './Filter';
 import ContactList from './ContactList';
@@ -11,7 +10,7 @@ export default function Phonebook() {
   const dispatch = useDispatch();
 
   const items = useSelector(state => state.contacts.contacts.items);
-  console.log(items);
+  // console.log(items);
   const formSubmitHandler = ({ name, number }) => {
     const normalizedSameName = name.toLowerCase();
 
@@ -21,7 +20,7 @@ export default function Phonebook() {
 
     findSameEl
       ? alert(`${name} is already in contacts`)
-      : dispatch(fetchContacts({ name, number }));
+      : dispatch(addContact({ name, number }));
   };
 
   return (
