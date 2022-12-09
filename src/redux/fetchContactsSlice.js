@@ -4,7 +4,7 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
-  filteredList,
+  // filteredList,
 } from './contactOperations';
 
 const handlePending = state => {
@@ -55,18 +55,16 @@ const fetchContactsSlice = createSlice({
       state.contacts.items.splice(index, 1);
     },
     [deleteContact.rejected]: handleRejected,
-    [filteredList.pending]: handlePending,
-    [filteredList.fulfilled](state, action) {
-      state.contacts.isLoading = false;
-      state.contacts.error = null;
-      const index = state.filter.findIndex(
-        contact => contact.filter === action.payload
-      );
-      state.contacts.items.splice(index, 1, action.payload);
-    },
-    [filteredList.rejected]: handleRejected,
   },
-});
+
+    reducers: {
+      filteredList(state, action) {
+        state.filter = action.payload;
+      },
+    },
+  });
+
+  export const { filteredList } = fetchContactsSlice.actions;
 
 export default fetchContactsSlice.reducer;
 
