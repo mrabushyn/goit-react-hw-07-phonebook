@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../redux/contactOperations';
-import { fetchContacts } from 'redux/contactOperations';
+import { addContact } from 'redux/contactOperations';
+import { selectContacts } from 'redux/selectors';
 
 import Filter from './Filter';
 import ContactList from './ContactList';
@@ -9,8 +9,7 @@ import ContactForm from './ContactForm';
 export default function Phonebook() {
   const dispatch = useDispatch();
 
-  const items = useSelector(state => state.contacts.contacts.items);
-  // console.log(items);
+  const { items } = useSelector(selectContacts);
   const formSubmitHandler = ({ name, number }) => {
     const normalizedSameName = name.toLowerCase();
 

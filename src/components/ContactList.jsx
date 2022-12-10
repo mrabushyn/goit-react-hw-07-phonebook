@@ -1,16 +1,15 @@
-// import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import css from './Phonebook.module.css';
 
 import { useEffect } from 'react';
 import { fetchContacts, deleteContact } from 'redux/contactOperations';
-import { getContacts, getFilter } from 'redux/selectors';
+import { selectContacts, selectFilter } from 'redux/selectors';
 
 export default function ContactList() {
   const dispatch = useDispatch();
 
-  const { items, isLoading, error } = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const { items, isLoading, error } = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
 
   const normalizedFilter = filter.toLowerCase();
   const filteredContacts = items.filter(contact =>
